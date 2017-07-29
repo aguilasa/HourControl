@@ -1,0 +1,14 @@
+page-home {
+ion-card.marks ion-card-header {
+  color: map-get($colors, primary);
+}
+
+.timer-button {
+    font-size: 5rem !important;
+    height: 1em !important;
+  }
+  
+  .no-bottom-border.item .item-inner {
+      border-bottom: none !important;
+  }
+}

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Marcações
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-segment [(ngModel)]="option" (ionChange)="changeOption()">
+        <ion-segment-button *ngFor="let seg of segments" [value]="seg.value">
+          {{seg.text}}
+        </ion-segment-button>
+      </ion-segment>
+    </ion-card-header>
+
+    <ion-item class="no-bottom-border item">
+      <button ion-button large full clear class="timer-button">{{displayTime}}</button>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-item>
+      <ion-label>Hora marcação</ion-label>
+      <ion-datetime [doneText]="doneText" [cancelText]="cancelText" displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="actualHour"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-buttons end>
+        <button ion-button icon-only col-2 (click)="add()"><ion-icon name="add"></ion-icon></button>
+        <button ion-button icon-only col-2 (click)="refresh()"><ion-icon name="refresh"></ion-icon></button>
+      </ion-buttons>
+    </ion-item>
+
+
+  </ion-card>
+
+  <ion-card class="marks" *ngIf="marks && marks.length > 0">
+    <ion-card-header>
+      Marcações
+    </ion-card-header>
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let mark of marks" #item>
+        <ion-item class="no-bottom-border item">
+          <ion-label>Marcação</ion-label>
+          <ion-datetime [doneText]="doneText" [cancelText]="cancelText" displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="mark.markHour"
+            (ionChange)="updateMark(mark)"></ion-datetime>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button (click)="del(mark)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-list>
+  </ion-card>
+
+
+</ion-content>
